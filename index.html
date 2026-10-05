@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Inicio de Sesión</title>
+<script src='app.js'></script>
+<script src='whatsapp.js'></script>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    html, body {
+        height: 100%;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #4a90c2 0%, #6ba3d6 50%, #8bb8e0 100%);
+        overflow: hidden; /* Quita el scroll */
+        position: relative;
+    }
+    /* Fondo decorativo con siluetas de mascotas */
+    body::before,
+    body::after,
+    .mascota-fondo-1,
+    .mascota-fondo-2,
+    .mascota-fondo-3 {
+        content: '';
+        position: absolute;
+        background: radial-gradient(ellipse, rgba(26, 58, 92, 0.12) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+    }
+    body::before {
+        width: 300px;
+        height: 300px;
+        top: 10%;
+        left: 5%;
+    }
+    body::after {
+        width: 250px;
+        height: 250px;
+        top: 60%;
+        right: 5%;
+    }
+    .mascota-fondo-1 {
+        width: 200px;
+        height: 200px;
+        top: 30%;
+        right: 15%;
+    }
+    .mascota-fondo-2 {
+        width: 220px;
+        height: 220px;
+        bottom: 10%;
+        left: 15%;
+    }
+    .mascota-fondo-3 {
+        width: 180px;
+        height: 180px;
+        top: 5%;
+        right: 40%;
+    }
+    .contenedor {
+        max-width: 92%;
+        width: 700px;
+        margin: 0 auto;
+        background: rgba(26, 58, 92, 0.75);
+        border: 4px solid #ffffff;
+        border-radius: 20px;
+        padding: clamp(20px, 5vw, 40px) clamp(15px, 6vw, 30px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: min(92%, 700px);
+    }
+    .contenedor label:first-of-type {
+        display: block;
+        font-size: clamp(20px, 5vw, 28px);
+        font-weight: bold;
+        color: #ffffff;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        line-height: 1.2;
+    }
+    .contenedor label:nth-of-type(2) {
+        display: block;
+        font-size: clamp(14px, 3vw, 16px);
+        color: #d0e4f5;
+        margin-bottom: 20px;
+        line-height: 1.5;
+    }
+    .imagen-mascotas {
+        width: 100%;
+        max-width: 500px;
+        border-radius: 15px;
+        margin: 0 auto 18px;
+        display: block;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        border: 3px solid #ffffff;
+        height: auto;
+        object-fit: cover;
+    }
+    .botones-contenedor {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    .boton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 220px;
+        height: 55px;
+        padding: 0 15px;
+        font-size: clamp(14px, 3vw, 16px);
+        font-weight: bold;
+        border: 3px solid #ffffff;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        box-sizing: border-box;
+        text-align: center;
+        background: #ffffff;
+        color: #00b4d8;
+    }
+    .boton:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        background: #00b4d8;
+        color: white;
+    }
+    /* Ajustes para tablets */
+    @media (min-width: 481px) and (max-width: 768px) {
+        .imagen-mascotas {
+            max-width: 450px;
+        }
+        .boton {
+            max-width: 200px;
+        }
+    }
+    /* Ajustes específicos para móviles pequeños */
+    @media (max-width: 480px) {
+        .contenedor {
+            padding: 25px 20px;
+        }
+        .imagen-mascotas {
+            max-width: 100%;
+        }
+        .botones-contenedor {
+            flex-direction: column;
+            gap: 12px;
+        }
+        .boton {
+            max-width: 280px;
+            width: 100%;
+            height: 52px;
+        }
+    }
+    /* Ajustes para pantallas muy pequeñas */
+    @media (max-width: 360px) {
+        .contenedor {
+            padding: 20px 15px;
+        }
+        .contenedor label:first-of-type {
+            font-size: clamp(18px, 5vw, 22px);
+        }
+    }
+</style>
+</head>
+<body>
+<div class="mascota-fondo-1"></div>
+<div class="mascota-fondo-2"></div>
+<div class="mascota-fondo-3"></div>
+<div class="contenedor">
+    <label>ENCUENTRA O REPORTA MASCOTAS PERDIDAS</label>
+    <label>Juntos podemos reunir a las familias con sus mascotas. Busca entre los reportes activos o publica el tuyo en segundos</label>
+    <img class="imagen-mascotas" src="https://p16-flow-image-sign.ibyteimg.com/tos-mya-i-3rsxbfecgb/rc_gen_image/e1b7b869c3a44c429314dcb44b36f1d7.jpeg~tplv-0es2k971ck-image.image?rcl=20260904044201FB5AF8F26C7F2FDE1BBE&rk3s=8e244e95&rrcfp=02a80fc2&x-expires=1791060145&x-signature=plAm5Fid8jokvyarg852AugbwYA%3D" alt="Mascotas felices juntas">
+    <div class="botones-contenedor">
+        <a href="registro.html" class="boton iniciar">
+            CREAR REPORTE
+        </a>
+        <a href="sector de mascotas.html" class="boton continuar">
+            MASCOTAS PERDIDAS
+        </a>
+    </div>
+</div>
+</body>
+</html>

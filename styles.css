@@ -1,0 +1,74 @@
+<style>
+body {
+    margin: 0;
+    padding: 30px;
+    background-color: #bfe9ff;
+    background-image: url("https://images.unsplash.com/photo-1450778869180-41d0601e046e");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+}
+
+/* Contenedor del formulario */
+form {
+    width: 700px;
+    margin: 30px auto;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Cada fila */
+.form-row {
+    display: grid;
+    grid-template-columns: 180px 220px 180px 220px;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+/* Etiquetas */
+.form-row label {
+    font-weight: bold;
+    color: #24546b;
+}
+
+/* Recuadros de texto */
+.form-row input[type="text"],
+.form-row input[type="tel"] {
+    width: 100%;
+    height: 32px;
+    padding: 5px 8px;
+    box-sizing: border-box;
+    border: 1px solid #7db9d3;
+    border-radius: 6px;
+    background-color: #ffffff;
+}
+
+/* Archivo */
+.form-row input[type="file"] {
+    width: 100%;
+}
+
+/* Botón/campo de recompensa */
+.recompensa {
+    grid-column: 2 / 5;
+}
+
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 750px) {
+    form {
+        width: 90%;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .recompensa {
+        grid-column: auto;
+    }
+}
+</style>

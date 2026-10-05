@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Registrar mascota - App de Mascotas</title>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+html, body{
+    height: 100%;
+    min-height: 100vh;
+    background: #002F5F;
+    position: relative;
+    overflow: hidden; /* Quita el scroll de la página completa */
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centrado vertical */
+    padding: 16px;
+}
+/* Botón de regresar */
+.btn-regresar {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 44px;
+    height: 44px;
+    background: white;
+    color: #00b4d8;
+    border: 2px solid #00b4d8;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 10;
+}
+.btn-regresar:hover {
+    background: #00b4d8;
+    color: white;
+    transform: scale(1.1);
+}
+/* Contenedor principal */
+.contenedor{
+    width: min(100%, 560px); /* Máximo ancho en PC, completo en celular */
+    max-height: 92vh; /* Limita altura para no salirse */
+    overflow-y: auto; /* Scroll interno solo si es necesario */
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 8px;
+    padding: 5vw 6vw; /* Espaciado proporcional */
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+/* Barra de scroll interna discreta */
+.contenedor::-webkit-scrollbar {
+    width: 4px;
+}
+.contenedor::-webkit-scrollbar-thumb {
+    background: rgba(0,142,207,0.4);
+    border-radius: 2px;
+}
+.contenedor {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,142,207,0.4) transparent;
+}
+h1{ 
+    color: #008ecf; 
+    font-size: clamp(20px, 5vw, 25px); 
+    margin-bottom: 16px; 
+    text-align: center;
+}
+h2{ 
+    color: #333; 
+    font-size: clamp(15px, 3.5vw, 17px); 
+    margin: 16px 0 8px; 
+}
+.campo{ 
+    display: flex; 
+    flex-direction: column; 
+    gap: 4px; 
+    margin-bottom: 10px; 
+}
+label{ 
+    color: #333; 
+    font-size: 14px; 
+    font-weight: bold; 
+}
+input, textarea, select{
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #9cc8d8;
+    border-radius: 4px;
+    font-size: 16px; /* Evita zoom automático en iOS */
+}
+textarea{ 
+    min-height: 60px; 
+    max-height: 90px;
+    resize: none; 
+}
+.mensaje{ 
+    min-height: 20px; 
+    margin-top: 12px; 
+    font-size: 14px; 
+}
+.mensaje.error{ 
+    color: #b42318; 
+}
+.mensaje.exito{ 
+    color: #087443; 
+}
+/* Botones */
+.botones-contenedor{
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+}
+button.btn-registrar{
+    width: 100%;
+    max-width: 220px;
+    height: 48px;
+    background: white;
+    color: #008ecf;
+    border: 2px solid #008ecf;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+button.btn-registrar:hover{
+    background: #00b4d8;
+    color: white;
+    transform: scale(1.05);
+}
+/* ========== AJUSTES PARA CELULAR ========== */
+@media (max-width: 480px) {
+    body {
+        padding: 12px;
+        align-items: flex-start; /* Alinea arriba para no cortar contenido largo */
+    }
+    .contenedor {
+        padding: 20px 16px;
+        max-height: calc(100vh - 24px);
+        margin-top: 55px; /* Espacio para el botón de regresar */
+    }
+    .btn-regresar {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    input, textarea, select {
+        padding: 12px; /* Más cómodo al tocar en móvil */
+    }
+    button.btn-registrar {
+        max-width: 100%; /* Botón ancho en celular */
+    }
+}
+/* ========== AJUSTES PARA TABLET ========== */
+@media (min-width: 481px) and (max-width: 768px) {
+    .contenedor {
+        max-width: 500px;
+    }
+}
+/* ========== AJUSTES PARA PANTALLAS GRANDES ========== */
+@media (min-width: 769px) {
+    .contenedor {
+        max-width: 560px;
+    }
+}
+</style>
+</head>
+<body>
+<button class="btn-regresar" onclick="window.location.href='index.html'">↩️</button>
+<div class="contenedor">
+    <h1>Registrar mascota</h1>
+    <form id="formulario-registro" enctype="multipart/form-data">
+        <h2>Propietario</h2>
+        <div class="campo">
+            <label for="propietarioNombre">Nombre</label>
+            <input id="propietarioNombre" name="propietarioNombre" type="text" required>
+        </div>
+        <div class="campo">
+            <label for="propietarioTelefono">Teléfono</label>
+            <input id="propietarioTelefono" name="propietarioTelefono" type="tel" required>
+        </div>
+        <h2>Mascota</h2>
+        <div class="campo">
+            <label for="mascotaNombre">Nombre</label>
+            <input id="mascotaNombre" name="mascotaNombre" type="text" required>
+        </div>
+        <div class="campo">
+            <label for="mascotaDescripcion">Descripción</label>
+            <textarea id="mascotaDescripcion" name="mascotaDescripcion" required></textarea>
+        </div>
+        <div class="campo">
+            <label for="razaCode">Raza</label>
+            <select id="razaCode" name="razaCode" required>
+                <option value="">Cargando razas...</option>
+            </select>
+        </div>
+        <div class="campo">
+            <label for="imagen">Imagen de la mascota</label>
+            <input id="imagen" name="imagen" type="file" accept="image/*" required>
+        </div>
+        <h2>Publicación</h2>
+        <div class="campo">
+            <label for="publicidadDescripcion">Descripción del aviso</label>
+            <textarea id="publicidadDescripcion" name="publicidadDescripcion" required></textarea>
+        </div>
+        <div class="campo">
+            <label for="recompensa">Recompensa</label>
+            <input id="recompensa" name="recompensa" type="number" min="0" step="0.01">
+        </div>
+        <div class="campo">
+            <label for="fecha">Fecha</label>
+            <input id="fecha" name="fecha" type="date" required>
+        </div>
+        
+        <div class="botones-contenedor">
+            <button type="button" class="btn-registrar" onclick="registrarPublicidad()">REGISTRAR</button>
+        </div>
+        
+        <p id="mensaje-registro" class="mensaje" aria-live="polite"></p>
+    </form>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
